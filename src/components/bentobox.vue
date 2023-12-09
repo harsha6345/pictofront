@@ -13,7 +13,7 @@ import flex1 from "../components/flex1.vue";
       <flex1
         title="Learn FrontEnd"
         link="#"
-        image="/images/front.png"
+        image="/images/front.webp"
         description="Front-end development is like making a colorful, interactive playground on the internet where you can click on things and they do fun stuff!"
       />
       <flex1

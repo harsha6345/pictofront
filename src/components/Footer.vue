@@ -8,7 +8,7 @@ const currentYear = ref(new Date().getFullYear());
   <footer class="bg-pictoblue">
     <div class="mx-auto max-w-5xl px-4 py-4 sm:px-6 lg:px-8">
       <div class="flex justify-center">
-        <img src="/images/logo.png" alt="" class="w-[150px]" />
+        <img src="/images/logo.webp" alt="" class="w-[150px]" />
       </div>
 
       <p class="mx-auto my-3 max-w-md text-center leading-relaxed text-white">

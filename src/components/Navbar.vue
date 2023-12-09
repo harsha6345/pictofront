@@ -50,7 +50,7 @@
           </div>
         </div>
         <router-link to="/test"
-          ><img src="/images/logo.png" alt="" class="w-[150px] cursor-pointer"
+          ><img src="/images/logo.webp" alt="" class="w-[150px] cursor-pointer"
         /></router-link>
       </div>
 
