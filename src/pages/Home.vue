@@ -1,7 +1,7 @@
 <template>
   <div>
     <section
-      class="flex flex-col items-center justify-center bg-[url('images/oooscillate.svg')] bg-no-repeat bg-cover bg-pictoblue"
+      class="flex flex-col items-center justify-center bg-[url('/images/oooscillate.svg')] bg-no-repeat bg-cover bg-pictoblue"
     >
       <div class="flex flex-col items-center px-4 py-16 gap-y-12">
         <h1
