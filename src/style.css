@@ -27,3 +27,11 @@
 .stroke {
   -webkit-text-stroke: 0.25px #000000;
 }
+
+.project-sidebar {
+  @apply bg-pictoblue;
+}
+
+.project-sidebar button {
+  @apply text-white bg-opacity-50 w-full text-left py-2 px-3 rounded-md;
+}

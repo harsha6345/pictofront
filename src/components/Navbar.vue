@@ -49,7 +49,7 @@
             </a>
           </div>
         </div>
-        <router-link to="/test"
+        <router-link to="/"
           ><img src="/images/logo.webp" alt="" class="w-[150px] cursor-pointer"
         /></router-link>
       </div>

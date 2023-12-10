@@ -1,31 +1,30 @@
 <template>
-  <div class="bg-pictoblue2">
-    <div class="timeline">
-      <ul>
-        <RoadmapCard
-          title="Web Fundamentals"
-          description="Lorem Ipsum is simply dummy text of the printing and typesetting industry..."
-        />
-        <RoadmapCard
-          title="HTML : Structure of the site"
-          description="Lorem Ipsum is simply dummy text of the printing and typesetting industry..."
-        />
-        <RoadmapCard
-          title="CSS : Styling the site"
-          description="Lorem Ipsum is simply dummy text of the printing and typesetting industry..."
-        />
-        <RoadmapCard
-          title="JavaScript : Interactive Websites"
-          description="Lorem Ipsum is simply dummy text of the printing and typesetting industry..."
-        />
-        <div style="clear: both"></div>
-      </ul>
+  <li>
+    <div class="content">
+      <h3>{{ title }}</h3>
+      <p>
+        {{ description }}
+      </p>
     </div>
-  </div>
+    <div class="time bg-pictored bg-opacity-80 cursor-pointer">
+      <button class="flex items-center gap-x-2">Learn Now <Open /></button>
+    </div>
+  </li>
 </template>
 
 <script setup>
-import RoadmapCard from "../components/RoadmapCard.vue";
+defineProps({
+  title: {
+    type: String,
+    required: true,
+  },
+  description: {
+    type: String,
+    required: true,
+  },
+});
+
+import Open from "../assets/Open.vue";
 </script>
 
 <style scoped>
@@ -35,7 +34,7 @@ h1 {
 }
 .timeline {
   position: relative;
-  margin: 50px auto;
+  margin: 0px auto;
   padding: 40px 0;
   width: 1000px;
   box-sizing: border-box;
@@ -82,7 +81,6 @@ h1 {
   height: 10px;
   top: 24px;
   right: -6px;
-  background: rgba(214, 6, 6, 1);
   border-radius: 50%;
   box-shadow: 0 0 0 3px rgba(233, 33, 99, 0.2);
 }
@@ -93,21 +91,35 @@ h1 {
   height: 10px;
   top: 24px;
   left: -4px;
-  background: rgba(214, 6, 6, 1);
+
   border-radius: 50%;
   box-shadow: 0 0 0 3px rgba(233, 33, 99, 0.2);
 }
-
+.timeline ul li h3 {
+  padding: 0;
+  margin: 0;
+  @apply bg-gradient-to-r from-red-500 to-50% to-blue-500 bg-clip-text text-transparent text-3xl;
+  font-weight: 600;
+}
+.timeline ul li p {
+  margin: 10px 0 0;
+  padding: 0;
+  color: white;
+}
+.timeline ul li .time button {
+  margin: 0;
+  padding: 0;
+  font-size: 16px;
+}
 .timeline ul li:nth-child(odd) .time {
   position: absolute;
   top: 12px;
   right: -165px;
   margin: 0;
   padding: 8px 16px;
-  background: rgba(233, 33, 99, 1);
   color: #fff;
-  border-radius: 18px;
-  box-shadow: 0 0 0 3px rgba(233, 33, 99, 0.3);
+  border-radius: 5px;
+  box-shadow: 0 0 0 2px rgba(233, 33, 99, 0.3);
 }
 .timeline ul li:nth-child(even) .time {
   position: absolute;
@@ -115,10 +127,9 @@ h1 {
   left: -165px;
   margin: 0;
   padding: 8px 16px;
-  background: rgba(233, 33, 99, 1);
   color: #fff;
-  border-radius: 18px;
-  box-shadow: 0 0 0 3px rgba(233, 33, 99, 0.3);
+  border-radius: 5px;
+  box-shadow: 0 0 0 2px rgba(233, 33, 99, 0.3);
 }
 @media (max-width: 1000px) {
   .timeline {

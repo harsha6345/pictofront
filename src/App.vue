@@ -4,7 +4,7 @@ import Footer from "./components/Footer.vue";
 </script>
 
 <template>
-  <div>
+  <div class="bg-pictoblue2">
     <Navbar />
     <router-view></router-view>
     <img
