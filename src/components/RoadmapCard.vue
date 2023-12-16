@@ -13,6 +13,9 @@
 </template>
 
 <script setup>
+import { onMounted } from "vue";
+import Open from "../assets/Open.vue";
+
 defineProps({
   title: {
     type: String,
@@ -24,7 +27,7 @@ defineProps({
   },
 });
 
-import Open from "../assets/Open.vue";
+onMounted(() => {});
 </script>
 
 <style scoped>

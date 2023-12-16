@@ -15,7 +15,15 @@
           description="Lorem Ipsum is simply dummy text of the printing and typesetting industry..."
         />
         <RoadmapCard
+          title="CSS tooling"
+          description="Lorem Ipsum is simply dummy text of the printing and typesetting industry..."
+        />
+        <RoadmapCard
           title="JavaScript : Interactive Websites"
+          description="Lorem Ipsum is simply dummy text of the printing and typesetting industry..."
+        />
+        <RoadmapCard
+          title="FrontEnd Framework"
           description="Lorem Ipsum is simply dummy text of the printing and typesetting industry..."
         />
         <div style="clear: both"></div>

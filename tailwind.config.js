@@ -21,6 +21,9 @@ module.exports = {
         transblack: "rgba(0,0,0,0.88)",
         shadowred: "rgba(214,73,103,0.7)",
       },
+      fontFamily: {
+        poppins: ["Poppins", "sans-serif"],
+      },
     },
   },
   plugins: [],
