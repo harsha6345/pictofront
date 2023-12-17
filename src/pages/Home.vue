@@ -47,7 +47,10 @@ import bentobox from "../components/bentobox.vue";
 import arrowRight from "../assets/arrow-right.vue";
 import { onMounted } from "vue";
 
+let adsbygoogle; // Define adsbygoogle outside setup block
+
 onMounted(() => {
+  adsbygoogle = window.adsbygoogle || []; // Initialize adsbygoogle
   const script = document.createElement("script");
   script.async = true;
   script.src =
@@ -65,7 +68,7 @@ onMounted(() => {
   const divAd = document.getElementById("home-ad");
   if (divAd) {
     divAd.appendChild(ins);
-    (adsbygoogle = window.adsbygoogle || []).push({});
+    adsbygoogle.push({}); // Push the ad to adsbygoogle array
   } else {
     console.error('Element with ID "home-ad" not found.');
   }
