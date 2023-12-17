@@ -3,6 +3,7 @@
     <div class="timeline">
       <ul>
         <RoadmapCard
+          @openSideBar="openbar"
           title="Web Fundamentals"
           description="Lorem Ipsum is simply dummy text of the printing and typesetting industry..."
         />
@@ -30,10 +31,46 @@
       </ul>
     </div>
   </div>
+  <div
+    class="h-screen w-[300px] py-2 px-3 bg-black bg-opacity-90 fixed top-0 -right-full transition-all duration-500 flex flex-col items-start ease-in"
+    id="roadSideBar"
+    :style="{ right: sidebarOpen ? '0' : '-100%' }"
+  >
+    <div class="flex w-full justify-end">
+      <button class="text-white text-4xl" @click="closeSideBar">&times;</button>
+    </div>
+    <p
+      class="text-white font-poppins text-2xl underline underline-offset-[10px]"
+    >
+      Content :
+    </p>
+    <div class="flex flex-col gap-y-3 py-5 px-3">
+      <a href="#" class="text-red-400 underline">HTML Text</a>
+      <a href="#" class="text-red-400 underline">HTML Text</a>
+      <a href="#" class="text-red-400 underline">HTML Text</a>
+      <a href="#" class="text-red-400 underline">HTML Text</a>
+      <a href="#" class="text-red-400 underline">HTML Text</a>
+      <a href="#" class="text-red-400 underline">HTML Text</a>
+      <a href="#" class="text-red-400 underline">HTML Text</a>
+      <a href="#" class="text-red-400 underline">HTML Text</a>
+    </div>
+  </div>
 </template>
 
 <script setup>
+import { onMounted, ref } from "vue";
 import RoadmapCard from "../components/RoadmapCard.vue";
+
+const sidebarOpen = ref(false);
+const openbar = () => {
+  sidebarOpen.value = !sidebarOpen.value;
+};
+
+const closeSideBar = () => {
+  sidebarOpen.value = false;
+};
+
+onMounted(() => {});
 </script>
 
 <style scoped>

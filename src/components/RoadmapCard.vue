@@ -7,7 +7,9 @@
       </p>
     </div>
     <div class="time bg-pictored bg-opacity-80 cursor-pointer">
-      <button class="flex items-center gap-x-2">Learn Now <Open /></button>
+      <button class="flex items-center gap-x-2" @click="openRoadMap">
+        Learn Now <Open />
+      </button>
     </div>
   </li>
 </template>
@@ -15,6 +17,12 @@
 <script setup>
 import { onMounted } from "vue";
 import Open from "../assets/Open.vue";
+
+const emits = defineEmits(["openSideBar"]);
+
+const openRoadMap = () => {
+  emits("openSideBar");
+};
 
 defineProps({
   title: {

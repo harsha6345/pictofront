@@ -29,7 +29,23 @@
         <div
           class="rounded-md bg-blue-300 w-11/12 flex justify-center items-center py-3"
         >
-          <h1>AD is going to be here</h1>
+          <script
+            async
+            src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9956258341245538"
+            crossorigin="anonymous"
+          ></script>
+          <!-- pictowiz -->
+          <ins
+            class="adsbygoogle"
+            style="display: block"
+            data-ad-client="ca-pub-9956258341245538"
+            data-ad-slot="4043919690"
+            data-ad-format="auto"
+            data-full-width-responsive="true"
+          ></ins>
+          <script>
+            (adsbygoogle = window.adsbygoogle || []).push({});
+          </script>
         </div>
       </div>
     </section>
