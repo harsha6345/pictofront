@@ -28,25 +28,8 @@
       <div class="flex justify-center w-full h-[200px] mb-8">
         <div
           class="rounded-md bg-blue-300 w-11/12 flex justify-center items-center py-3"
-        >
-          <script
-            async
-            src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9956258341245538"
-            crossorigin="anonymous"
-          ></script>
-          <!-- pictowiz -->
-          <ins
-            class="adsbygoogle"
-            style="display: block"
-            data-ad-client="ca-pub-9956258341245538"
-            data-ad-slot="4043919690"
-            data-ad-format="auto"
-            data-full-width-responsive="true"
-          ></ins>
-          <script>
-            (adsbygoogle = window.adsbygoogle || []).push({});
-          </script>
-        </div>
+          id="home-ad"
+        ></div>
       </div>
     </section>
     <section id="learn-section" class="w-full bg-[#2d0e44] px-5 py-12">
@@ -62,4 +45,31 @@
 <script setup>
 import bentobox from "../components/bentobox.vue";
 import arrowRight from "../assets/arrow-right.vue";
+import { onMounted } from "vue";
+
+onMounted(() => {
+  const script = document.createElement("script");
+  script.async = true;
+  script.src =
+    "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9956258341245538";
+  script.setAttribute("crossorigin", "anonymous");
+
+  const ins = document.createElement("ins");
+  ins.classList.add("adsbygoogle");
+  ins.style.display = "block";
+  ins.setAttribute("data-ad-client", "ca-pub-9956258341245538");
+  ins.setAttribute("data-ad-slot", "4043919690");
+  ins.setAttribute("data-ad-format", "auto");
+  ins.setAttribute("data-full-width-responsive", "true");
+
+  const divAd = document.getElementById("home-ad");
+  if (divAd) {
+    divAd.appendChild(ins);
+    (adsbygoogle = window.adsbygoogle || []).push({});
+  } else {
+    console.error('Element with ID "home-ad" not found.');
+  }
+
+  document.head.appendChild(script);
+});
 </script>
