@@ -1,58 +1,62 @@
 <template>
-  <div class="bg-pictoblue2">
-    <div class="timeline">
-      <ul>
-        <RoadmapCard
-          @openSideBar="openbar"
-          title="Web Fundamentals"
-          description="Lorem Ipsum is simply dummy text of the printing and typesetting industry..."
-        />
-        <RoadmapCard
-          title="HTML : Structure of the site"
-          description="Lorem Ipsum is simply dummy text of the printing and typesetting industry..."
-        />
-        <RoadmapCard
-          title="CSS : Styling the site"
-          description="Lorem Ipsum is simply dummy text of the printing and typesetting industry..."
-        />
-        <RoadmapCard
-          title="CSS tooling"
-          description="Lorem Ipsum is simply dummy text of the printing and typesetting industry..."
-        />
-        <RoadmapCard
-          title="JavaScript : Interactive Websites"
-          description="Lorem Ipsum is simply dummy text of the printing and typesetting industry..."
-        />
-        <RoadmapCard
-          title="FrontEnd Framework"
-          description="Lorem Ipsum is simply dummy text of the printing and typesetting industry..."
-        />
-        <div style="clear: both"></div>
-      </ul>
+  <div>
+    <div class="bg-pictoblue2">
+      <div class="timeline">
+        <ul>
+          <RoadmapCard
+            @openSideBar="openbar"
+            title="Web Fundamentals"
+            description="Lorem Ipsum is simply dummy text of the printing and typesetting industry..."
+          />
+          <RoadmapCard
+            title="HTML : Structure of the site"
+            description="Lorem Ipsum is simply dummy text of the printing and typesetting industry..."
+          />
+          <RoadmapCard
+            title="CSS : Styling the site"
+            description="Lorem Ipsum is simply dummy text of the printing and typesetting industry..."
+          />
+          <RoadmapCard
+            title="CSS tooling"
+            description="Lorem Ipsum is simply dummy text of the printing and typesetting industry..."
+          />
+          <RoadmapCard
+            title="JavaScript : Interactive Websites"
+            description="Lorem Ipsum is simply dummy text of the printing and typesetting industry..."
+          />
+          <RoadmapCard
+            title="FrontEnd Framework"
+            description="Lorem Ipsum is simply dummy text of the printing and typesetting industry..."
+          />
+          <div style="clear: both"></div>
+        </ul>
+      </div>
     </div>
-  </div>
-  <div
-    class="h-screen w-[300px] py-2 px-3 bg-black bg-opacity-90 fixed top-0 -right-full transition-all duration-500 flex flex-col items-start ease-in"
-    id="roadSideBar"
-    :style="{ right: sidebarOpen ? '0' : '-100%' }"
-  >
-    <div class="flex w-full justify-end">
-      <button class="text-white text-4xl" @click="closeSideBar">&times;</button>
-    </div>
-    <p
-      class="text-white font-poppins text-2xl underline underline-offset-[10px]"
+    <div
+      class="h-screen w-[300px] py-2 px-3 bg-black bg-opacity-90 fixed top-0 -right-full transition-all duration-500 flex flex-col items-start ease-in"
+      id="roadSideBar"
+      :style="{ right: sidebarOpen ? '0' : '-100%' }"
     >
-      Content :
-    </p>
-    <div class="flex flex-col gap-y-3 py-5 px-3">
-      <a href="#" class="text-red-400 underline">HTML Text</a>
-      <a href="#" class="text-red-400 underline">HTML Text</a>
-      <a href="#" class="text-red-400 underline">HTML Text</a>
-      <a href="#" class="text-red-400 underline">HTML Text</a>
-      <a href="#" class="text-red-400 underline">HTML Text</a>
-      <a href="#" class="text-red-400 underline">HTML Text</a>
-      <a href="#" class="text-red-400 underline">HTML Text</a>
-      <a href="#" class="text-red-400 underline">HTML Text</a>
+      <div class="flex w-full justify-end">
+        <button class="text-white text-4xl" @click="closeSideBar">
+          &times;
+        </button>
+      </div>
+      <p
+        class="text-white font-poppins text-2xl underline underline-offset-[10px]"
+      >
+        Content :
+      </p>
+      <div class="flex flex-col gap-y-3 py-5 px-3">
+        <a href="#" class="text-red-400 underline">HTML Text</a>
+        <a href="#" class="text-red-400 underline">HTML Text</a>
+        <a href="#" class="text-red-400 underline">HTML Text</a>
+        <a href="#" class="text-red-400 underline">HTML Text</a>
+        <a href="#" class="text-red-400 underline">HTML Text</a>
+        <a href="#" class="text-red-400 underline">HTML Text</a>
+        <a href="#" class="text-red-400 underline">HTML Text</a>
+        <a href="#" class="text-red-400 underline">HTML Text</a>
+      </div>
     </div>
   </div>
 </template>

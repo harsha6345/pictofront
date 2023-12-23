@@ -7,6 +7,7 @@ import Roadmaps from "./pages/Roadmaps.vue";
 import Editor from "./pages/Editor.vue";
 import Blogs from "./pages/Blogs.vue";
 import About from "./pages/About.vue";
+import Register from "./pages/Register.vue";
 
 const routes = [
   {
@@ -43,6 +44,11 @@ const routes = [
     path: "/about",
     name: "About",
     component: About,
+  },
+  {
+    path: "/register",
+    name: "Register",
+    component: Register,
   },
 ];
 
