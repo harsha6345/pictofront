@@ -8,12 +8,19 @@ import Editor from "./pages/Editor.vue";
 import Blogs from "./pages/Blogs.vue";
 import About from "./pages/About.vue";
 import Register from "./pages/Register.vue";
-
+import createBlogs from "./pages/BlogEditor.vue";
+import BlogEditorVue from "./pages/BlogEditor.vue";
+import BlogView from "./pages/BlogView.vue";
 const routes = [
   {
     path: "/",
     name: "Home",
     component: Home,
+  },
+  {
+    path: "/:slug",
+    name: "BlogView",
+    component: BlogView,
   },
   {
     path: "/edit",
@@ -39,6 +46,11 @@ const routes = [
     path: "/blogs",
     name: "Blogs",
     component: Blogs,
+  },
+  {
+    path: "/blogs/create",
+    name: "createBlogs",
+    component: BlogEditorVue,
   },
   {
     path: "/about",
