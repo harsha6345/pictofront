@@ -8,7 +8,7 @@
         >Create New
       </router-link>
     </div>
-    <div class="w-full px-2 py-3 gap-5 project-grid">
+    <div class="w-full px-2 py-3 gap-5 project-grid" v-if="blogs.length > 0">
       <div v-for="blog in blogs" :key="blog._id">
         <BlogCard
           :title="blog.title"
@@ -16,6 +16,12 @@
           :thumbnail="blog.thumbnail"
           :slug="blog.slug"
         ></BlogCard>
+      </div>
+    </div>
+    <div v-else class="py-24">
+      <div class="flex justify-center items-center py-4 flex-col">
+        <img src="/images/not-found.webp" alt="" class="w-[300px]" />
+        <h1 class="text-white">NO BLOGS RIGHT NOW</h1>
       </div>
     </div>
   </div>

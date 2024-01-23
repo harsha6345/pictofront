@@ -6,10 +6,11 @@
         {{ description }}
       </p>
     </div>
-    <div class="time bg-pictored bg-opacity-80 cursor-pointer">
-      <button class="flex items-center gap-x-2" @click="openRoadMap">
-        Learn Now <Open />
-      </button>
+    <div
+      class="time bg-pictored bg-opacity-80 cursor-pointer"
+      @click="openRoadMap"
+    >
+      <button class="flex items-center gap-x-2">Learn Now <Open /></button>
     </div>
   </li>
 </template>
@@ -20,11 +21,7 @@ import Open from "../assets/Open.vue";
 
 const emits = defineEmits(["openSideBar"]);
 
-const openRoadMap = () => {
-  emits("openSideBar");
-};
-
-defineProps({
+const roadmapProps = defineProps({
   title: {
     type: String,
     required: true,
@@ -33,7 +30,15 @@ defineProps({
     type: String,
     required: true,
   },
+  current: {
+    type: String,
+    required: true,
+  },
 });
+
+const openRoadMap = () => {
+  emits("openSideBar", roadmapProps.current);
+};
 
 onMounted(() => {});
 </script>

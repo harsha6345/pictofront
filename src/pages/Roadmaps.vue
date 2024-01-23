@@ -7,26 +7,37 @@
             @openSideBar="openbar"
             title="Web Fundamentals"
             description="Lorem Ipsum is simply dummy text of the printing and typesetting industry..."
+            current="webfundamentals"
           />
           <RoadmapCard
             title="HTML : Structure of the site"
             description="Lorem Ipsum is simply dummy text of the printing and typesetting industry..."
+            current="html"
+            @openSideBar="openbar"
           />
           <RoadmapCard
             title="CSS : Styling the site"
             description="Lorem Ipsum is simply dummy text of the printing and typesetting industry..."
+            current="css"
+            @openSideBar="openbar"
           />
           <RoadmapCard
-            title="CSS tooling"
+            title="CSS Frameworks"
             description="Lorem Ipsum is simply dummy text of the printing and typesetting industry..."
+            current="cssframeworks"
+            @openSideBar="openbar"
           />
           <RoadmapCard
             title="JavaScript : Interactive Websites"
             description="Lorem Ipsum is simply dummy text of the printing and typesetting industry..."
+            current="javascript"
+            @openSideBar="openbar"
           />
           <RoadmapCard
             title="FrontEnd Framework"
             description="Lorem Ipsum is simply dummy text of the printing and typesetting industry..."
+            current="frontendframework"
+            @openSideBar="openbar"
           />
           <div style="clear: both"></div>
         </ul>
@@ -45,17 +56,18 @@
       <p
         class="text-white font-poppins text-2xl underline underline-offset-[10px]"
       >
-        Content :
+        {{ currentJson.title }} :
       </p>
       <div class="flex flex-col gap-y-3 py-5 px-3">
-        <a href="#" class="text-red-400 underline">HTML Text</a>
-        <a href="#" class="text-red-400 underline">HTML Text</a>
-        <a href="#" class="text-red-400 underline">HTML Text</a>
-        <a href="#" class="text-red-400 underline">HTML Text</a>
-        <a href="#" class="text-red-400 underline">HTML Text</a>
-        <a href="#" class="text-red-400 underline">HTML Text</a>
-        <a href="#" class="text-red-400 underline">HTML Text</a>
-        <a href="#" class="text-red-400 underline">HTML Text</a>
+        <div
+          v-for="(link, key) in currentJson.links"
+          :key="key"
+          class="flex items-center"
+        >
+          <router-link :to="link" class="text-blue-500 ml-2">{{
+            key
+          }}</router-link>
+        </div>
       </div>
     </div>
   </div>
@@ -65,9 +77,47 @@
 import { onMounted, ref } from "vue";
 import RoadmapCard from "../components/RoadmapCard.vue";
 
+const currentContent = ref("html");
+
+const contentMap = {
+  webfundamentals: {},
+  html: {
+    title: "HTML Contents",
+    links: {
+      "Learn fundamentals": "/somewhere",
+      "Learn more": "/somewhere-else",
+    },
+  },
+  css: {
+    title: "CSS Contents",
+    links: {
+      "Basic styling": "/basic-styling",
+      "CSS Text": "/css-text",
+      "Box Model": "/box-model",
+    },
+  },
+  cssframeworks: {
+    "What ?": "/what",
+    "Why ?": "/why",
+  },
+  javascript: {},
+  frontendframework: {},
+};
+
+const currentJson = ref(contentMap.html);
+
+const getContent = (whatscurrent) => {
+  const content = contentMap[whatscurrent];
+  console.log(content);
+  currentJson.value = content;
+};
+
 const sidebarOpen = ref(false);
-const openbar = () => {
+const openbar = (current) => {
   sidebarOpen.value = !sidebarOpen.value;
+
+  currentContent.value = current;
+  getContent(currentContent.value);
 };
 
 const closeSideBar = () => {

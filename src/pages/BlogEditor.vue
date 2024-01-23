@@ -75,8 +75,12 @@ import "quill-image-uploader/dist/quill.imageUploader.min.css";
 import ImageUploader from "quill-image-uploader";
 import axios from "axios";
 import slugify from "slugify";
+import { useToast } from "vue-toast-notification";
+import "vue-toast-notification/dist/theme-sugar.css";
+import { useRouter } from "vue-router";
 
 Quill.register("modules/imageUploader", ImageUploader);
+const router = useRouter();
 
 const title = ref("");
 const blogContents = ref("");
@@ -120,7 +124,10 @@ const submitBlog = async () => {
       }
     );
 
-    console.log(blogresponse.data);
+    const $toast = useToast();
+    let instance = $toast.success("Uploaded successfully");
+
+    router.push("/blogs");
   } catch (error) {
     // Handle errors (e.g., show error message)
     console.error("Error submitting blog:", error);

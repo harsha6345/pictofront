@@ -21,7 +21,7 @@ const currentYear = ref(new Date().getFullYear());
         <footerlink footername="Link" footref="/blogs" />
       </ul>
     </div>
-    <h1 class="bg-pictoblue2 text-white text-center py-2">
+    <h1 class="bg-pictoblue2 text-white text-center py-2 text-sm">
       © Pictowiz {{ currentYear }} . All rights reserved
     </h1>
   </footer>

@@ -11,6 +11,8 @@ import Register from "./pages/Register.vue";
 import createBlogs from "./pages/BlogEditor.vue";
 import BlogEditorVue from "./pages/BlogEditor.vue";
 import BlogView from "./pages/BlogView.vue";
+import TutorialView from "./pages/TutorialView.vue";
+import Login from "./pages/Login.vue";
 const routes = [
   {
     path: "/",
@@ -18,9 +20,19 @@ const routes = [
     component: Home,
   },
   {
+    path: "/login",
+    name: "Login",
+    component: Login,
+  },
+  {
     path: "/:slug",
     name: "BlogView",
     component: BlogView,
+  },
+  {
+    path: "/tutorials/:slug",
+    name: "TutorialView",
+    component: TutorialView,
   },
   {
     path: "/edit",
