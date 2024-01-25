@@ -125,8 +125,7 @@
 import navlink from "./navlink.vue";
 import ProfileVue from "../assets/Profile.vue";
 import LogoutVue from "../assets/Logout.vue";
-
-const user = "Test";
+import axios from "axios";
 </script>
 
 <style scoped>

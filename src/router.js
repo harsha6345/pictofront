@@ -13,6 +13,9 @@ import BlogEditorVue from "./pages/BlogEditor.vue";
 import BlogView from "./pages/BlogView.vue";
 import TutorialView from "./pages/TutorialView.vue";
 import Login from "./pages/Login.vue";
+import Signup from "./pages/Signup.vue";
+import createProject from "./pages/createProject.vue";
+import ProjectView from "./pages/ProjectView.vue";
 const routes = [
   {
     path: "/",
@@ -25,7 +28,22 @@ const routes = [
     component: Login,
   },
   {
-    path: "/:slug",
+    path: "/projects/create",
+    name: "CreateProjects",
+    component: createProject,
+  },
+  {
+    path: "/projects/:slug",
+    name: "ProjectsView",
+    component: ProjectView,
+  },
+  {
+    path: "/signup",
+    name: "Signup",
+    component: Signup,
+  },
+  {
+    path: "/blogs/:slug",
     name: "BlogView",
     component: BlogView,
   },

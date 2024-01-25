@@ -2,6 +2,7 @@
   <main
     class="md:flex justify-start gap-x-3 bg-pictoblue2 h-full bg-[url('/images/ffflurry.svg')] bg-no-repeat bg-cover"
   >
+    <router-link to="/projects/create">Add new</router-link>
     <div
       class="project-sidebar md:bg-opacity-0 bg-opacity-100 h-full flex-shrink-0 md:w-[200px] w-full overflow-y-scroll flex md:flex-col flex-row items-start gap-y-3 px-4 py-5 flex-wrap"
     >
@@ -35,34 +36,15 @@
     </div>
     <div class="project-main w-full">
       <div class="w-full px-4 py-9 gap-5 project-grid">
-        <ProjectCard
-          title="Hello Project"
-          date="12 Oct 2020"
-          :skills="['Html', 'Css']"
-        />
-        <ProjectCard
-          title="Hello Project"
-          date="12 Oct 2020"
-          :skills="['Html', 'Css']"
-        />
-        <ProjectCard
-          title="Hello Project"
-          date="12 Oct 2020"
-          :skills="['Html', 'Css', 'Js']"
-        />
-        <ProjectCard
-          title="Hello Project"
-          date="12 Oct 2020"
-          :skills="['Html', 'Css', 'Js']"
-        /><ProjectCard
-          title="Hello Project"
-          date="12 Oct 2020"
-          :skills="['Html', 'Css', 'Js']"
-        /><ProjectCard
-          title="Hello Project"
-          date="12 Oct 2020"
-          :skills="['Html', 'Css', 'Js']"
-        />
+        <div v-for="project in projects" :key="project._id">
+          <ProjectCard
+            :title="project.title"
+            :slug="project.slug"
+            :type="project.type"
+            :date="project.createdAtFormatted"
+            :excerpt="project.excerpt"
+          />
+        </div>
       </div>
     </div>
   </main>
@@ -71,8 +53,30 @@
 <script setup>
 import { ref } from "vue";
 import ProjectCard from "../components/ProjectCard.vue";
+import axios from "axios";
+import moment from "moment";
 
 const currentList = ref("html");
+
+const projects = ref([]);
+
+const getProjects = async () => {
+  try {
+    const response = await axios.get("http://localhost:8000/api/projects/get");
+    projects.value = response.data; // Assign fetched data to the reactive ref
+
+    // Parse and format dates using Moment.js before assigning them
+    projects.value.forEach((project) => {
+      project.createdAtFormatted = moment(project.createdAt).format(
+        "MMMM Do, YYYY"
+      ); // Customize the format as needed
+    });
+  } catch (error) {
+    console.error("Error fetching projects:", error);
+  }
+};
+
+getProjects();
 
 const handleActive = (list) => {
   currentList.value = list;
@@ -86,7 +90,7 @@ const handleActive = (list) => {
 
 .project-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, 250px);
+  grid-template-columns: repeat(auto-fit, 320px);
   justify-content: center;
   align-items: center;
 }

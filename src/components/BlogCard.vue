@@ -16,7 +16,7 @@
       </h3>
       <div class="flex justify-end">
         <router-link
-          :to="slug"
+          :to="bloglink"
           class="text-white bg-pictored rounded-md py-1 px-2 mt-2"
           >Read more</router-link
         >
@@ -44,4 +44,6 @@ const blogprops = defineProps({
     required: true,
   },
 });
+
+const bloglink = `/blogs/${blogprops.slug}`;
 </script>

@@ -38,7 +38,8 @@
             <input
               type="email"
               class="block w-full py-3 text-gray-700 bg-white border rounded-lg px-11 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
-              placeholder="Email address"
+              placeholder="Email/username"
+              v-model="emailorusername"
             />
           </div>
 
@@ -64,11 +65,13 @@
               type="password"
               class="block w-full px-10 py-3 text-gray-700 bg-white border rounded-lg dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
               placeholder="Password"
+              v-model="password"
             />
           </div>
 
           <div class="mt-6">
             <button
+              @click.prevent="login"
               class="w-full px-6 py-3 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-pictored rounded-lg focus:outline-none focus:ring focus:ring-opacity-50"
             >
               Sign in
@@ -105,12 +108,12 @@
             </a>
 
             <div class="mt-6 text-center">
-              <a
-                href="#"
+              <router-link
+                to="/signup"
                 class="text-sm text-blue-500 hover:underline dark:text-blue-400"
               >
                 Don’t have an account yet? Sign up
-              </a>
+              </router-link>
             </div>
           </div>
         </form>
@@ -118,3 +121,27 @@
     </section>
   </div>
 </template>
+
+<script setup>
+import axios from "axios";
+import { ref } from "vue";
+import { useRouter } from "vue-router";
+import { useToast } from "vue-toast-notification";
+import "vue-toast-notification/dist/theme-sugar.css";
+const emailorusername = ref("");
+const password = ref("");
+
+const router = useRouter();
+
+const login = async () => {
+  const result = await axios.post("http://localhost:8000/api/users/login", {
+    email: emailorusername.value,
+    password: password.value,
+  });
+
+  const $toast = useToast();
+
+  let instance = $toast.success(`Welcome ${result.data.user.name}`);
+  router.push("/");
+};
+</script>

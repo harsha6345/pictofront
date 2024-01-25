@@ -8,7 +8,7 @@
           class="rounded-full"
         />
         <div class="flex flex-col">
-          <h6>Posted by Harsha</h6>
+          <h6>Posted by Somebody</h6>
           <h6>September 2026</h6>
         </div>
       </div>
