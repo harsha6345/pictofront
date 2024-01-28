@@ -27,7 +27,7 @@
       </div>
       <div class="flex justify-center w-full h-[200px] mb-8">
         <div
-          class="rounded-md bg-blue-300 w-11/12 flex justify-center items-center py-3"
+          class="rounded-md bg-blue-300 w-11/12 flex justify-center items-center py-3 h-[200px]"
           id="home-ad"
           v-html="adsensecontent"
         ></div>
