@@ -51,8 +51,8 @@ import { onMounted, ref } from "vue";
 const adsensecontent = ref();
 
 onMounted(() => {
-  adsensecontent.value = document.getelementbyid(
+  adsensecontent.value = document.getElementById(
     "divadsensedisplaynone"
-  ).innerhtml;
+  ).innerHTML;
 });
 </script>
