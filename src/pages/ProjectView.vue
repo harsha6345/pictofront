@@ -4,7 +4,7 @@
       <h1 class="text-white py-3 text-center">{{ project.title }}</h1>
       <div class="flex justify-center gap-x-6 px-4 py-3 items-center flex-wrap">
         <img :src="project.thumbnail" alt="" class="max-w-[350px]" />
-        <div v-if="youtubeid != undefined">
+        <div v-if="project.youTubevideo">
           <iframe
             width="700"
             height="400"
@@ -110,6 +110,7 @@ onMounted(async () => {
     }, 0);
 
     youtubeid.value = `https://www.youtube.com/embed/${response.data[0].youTubevideo}`;
+    console.log(project.value);
   } catch (error) {
     console.error("Error fetching blog details:", error);
   }

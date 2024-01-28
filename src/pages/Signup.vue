@@ -175,6 +175,9 @@
 <script setup>
 import axios from "axios";
 import { onMounted, ref } from "vue";
+import { useRouter } from "vue-router";
+
+const router = useRouter();
 
 const username = ref("");
 const password = ref("");
@@ -184,13 +187,20 @@ const profileimagename = ref("");
 const profilePic = ref(null);
 
 const register = async () => {
-  await axios.post("http://localhost:8000/api/users/", {
+  const response = await axios.post("http://localhost:8000/api/users/", {
     name: username.value,
     password: password.value,
     email: email.value,
     username: username.value,
     profilepic: profileurl.value,
   });
+
+  if (response.data) {
+    localStorage.setItem("user", JSON.stringify(response.data));
+  }
+
+  router.push("/");
+  location.reload();
 };
 
 const uploadProfile = async (event) => {

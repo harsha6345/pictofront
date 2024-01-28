@@ -7,7 +7,6 @@ import Roadmaps from "./pages/Roadmaps.vue";
 import Editor from "./pages/Editor.vue";
 import Blogs from "./pages/Blogs.vue";
 import About from "./pages/About.vue";
-import Register from "./pages/Register.vue";
 import createBlogs from "./pages/BlogEditor.vue";
 import BlogEditorVue from "./pages/BlogEditor.vue";
 import BlogView from "./pages/BlogView.vue";
@@ -16,6 +15,7 @@ import Login from "./pages/Login.vue";
 import Signup from "./pages/Signup.vue";
 import createProject from "./pages/createProject.vue";
 import ProjectView from "./pages/ProjectView.vue";
+import Dashboard from "./pages/adminControls/Dashboard.vue";
 const routes = [
   {
     path: "/",
@@ -87,10 +87,13 @@ const routes = [
     name: "About",
     component: About,
   },
+
+  //Admin controls
+
   {
-    path: "/register",
-    name: "Register",
-    component: Register,
+    path: "/admin",
+    name: "Dashboard",
+    component: Dashboard,
   },
 ];
 

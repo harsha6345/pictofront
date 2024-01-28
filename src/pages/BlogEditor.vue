@@ -124,8 +124,8 @@ const submitBlog = async () => {
       }
     );
 
-    const $toast = useToast();
-    let instance = $toast.success("Uploaded successfully");
+    const toast = useToast();
+    toast.success("Uploaded successfully");
 
     router.push("/blogs");
   } catch (error) {

@@ -8,35 +8,36 @@
     >
       <button
         class="bg-violet-900"
-        @click="handleActive('html')"
-        :class="{ active: currentList === 'html' }"
-        id="html"
-        projectId="78"
+        @click="handleActive('all')"
+        :class="{ active: currentList === 'all' }"
+      >
+        All
+      </button>
+      <button
+        class="bg-violet-900"
+        @click="handleActive(0)"
+        :class="{ active: currentList === 0 }"
       >
         HTML only
       </button>
       <button
         class="bg-violet-900"
-        @click="handleActive('hc')"
-        :class="{ active: currentList === 'hc' }"
-        id="hc"
-        projectId="78"
+        @click="handleActive(1)"
+        :class="{ active: currentList === 1 }"
       >
         HTML & CSS
       </button>
       <button
         class="bg-violet-900"
-        @click="handleActive('hcj')"
-        :class="{ active: currentList === 'hcj' }"
-        id="hcj"
-        projectId="78"
+        @click="handleActive(2)"
+        :class="{ active: currentList === 2 }"
       >
         HTML + CSS + JS
       </button>
     </div>
     <div class="project-main w-full">
       <div class="w-full px-4 py-9 gap-5 project-grid">
-        <div v-for="project in projects" :key="project._id">
+        <div v-for="project in tempProjects" :key="project._id">
           <ProjectCard
             :title="project.title"
             :slug="project.slug"
@@ -51,14 +52,31 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { ref, watch } from "vue";
 import ProjectCard from "../components/ProjectCard.vue";
 import axios from "axios";
 import moment from "moment";
 
-const currentList = ref("html");
+const currentList = ref("all");
 
-const projects = ref([]);
+const projects = ref();
+const tempProjects = ref();
+
+watch(currentList, (newList, oldList) => {
+  const tempArray = [];
+
+  projects.value.forEach((project) => {
+    if (project.type === newList && project.type != "all") {
+      tempArray.push(project);
+    }
+  });
+
+  tempProjects.value = tempArray;
+
+  if (currentList.value == "all") {
+    tempProjects.value = projects.value;
+  }
+});
 
 const getProjects = async () => {
   try {
@@ -71,6 +89,8 @@ const getProjects = async () => {
         "MMMM Do, YYYY"
       ); // Customize the format as needed
     });
+
+    tempProjects.value = projects.value;
   } catch (error) {
     console.error("Error fetching projects:", error);
   }

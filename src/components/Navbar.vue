@@ -107,6 +107,7 @@
             x-transition
           >
             <button
+              @click="logoutFn"
               class="flex gap-x-2 items-center text-lg group px-3 hover:bg-red-400 hover:text-white py-2 rounded-sm mx-2 transition"
             >
               <LogoutVue
@@ -126,6 +127,25 @@ import navlink from "./navlink.vue";
 import ProfileVue from "../assets/Profile.vue";
 import LogoutVue from "../assets/Logout.vue";
 import axios from "axios";
+import { ref } from "vue";
+import { useRouter } from "vue-router";
+
+const user = ref();
+const router = useRouter();
+
+const getUser = async (req, res) => {
+  const userStorage = JSON.parse(localStorage.getItem("user"));
+
+  user.value = userStorage;
+};
+
+const logoutFn = async () => {
+  localStorage.removeItem("user");
+  router.push("/");
+  location.reload();
+};
+
+getUser();
 </script>
 
 <style scoped>
