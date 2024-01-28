@@ -29,6 +29,7 @@
         <div
           class="rounded-md bg-blue-300 w-11/12 flex justify-center items-center py-3"
           id="home-ad"
+          v-html="adsensecontent"
         ></div>
       </div>
     </section>
@@ -45,34 +46,13 @@
 <script setup>
 import bentobox from "../components/bentobox.vue";
 import arrowRight from "../assets/arrow-right.vue";
-import { onMounted } from "vue";
+import { onMounted, ref } from "vue";
 
-let adsbygoogle; // Define adsbygoogle outside setup block
+const adsensecontent = ref();
 
 onMounted(() => {
-  adsbygoogle = window.adsbygoogle || []; // Initialize adsbygoogle
-  const script = document.createElement("script");
-  script.async = true;
-  script.src =
-    "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9956258341245538";
-  script.setAttribute("crossorigin", "anonymous");
-
-  const ins = document.createElement("ins");
-  ins.classList.add("adsbygoogle");
-  ins.style.display = "block";
-  ins.setAttribute("data-ad-client", "ca-pub-9956258341245538");
-  ins.setAttribute("data-ad-slot", "4043919690");
-  ins.setAttribute("data-ad-format", "auto");
-  ins.setAttribute("data-full-width-responsive", "true");
-
-  const divAd = document.getElementById("home-ad");
-  if (divAd) {
-    divAd.appendChild(ins);
-    adsbygoogle.push({}); // Push the ad to adsbygoogle array
-  } else {
-    console.error('Element with ID "home-ad" not found.');
-  }
-
-  document.head.appendChild(script);
+  adsensecontent.value = document.getelementbyid(
+    "divadsensedisplaynone"
+  ).innerhtml;
 });
 </script>
