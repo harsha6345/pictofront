@@ -6,7 +6,7 @@
         :key="course._id"
         class="text-white flex items-center gap-x-4 py-3 justify-center"
       >
-        <router-link :to="`/admin/${course.slug}`"
+        <router-link :to="`/admin/${course._id}`"
           ><h1>{{ course.title }}</h1></router-link
         >
         <fwb-button @click="showModal(course.title, course.pic)">
@@ -16,7 +16,7 @@
 
         <fwb-modal v-if="isShowModal" @close="closeModal">
           <template #header>
-            <div class="flex items-center text-lg">{{ course.title }}</div>
+            <div class="flex items-center text-lg">{{ modalTitle }}</div>
           </template>
           <template #body>
             <fwb-input
@@ -34,9 +34,10 @@
           </template>
           <template #footer>
             <div class="flex justify-between">
-              <fwb-button @click="closeModal(course._id)" variant="green">
+              <fwb-button @click="closeModalUpload(course._id)" variant="green">
                 <h1 class="text-slate-300 rounded-md">Edit</h1>
               </fwb-button>
+              <fwb-button @click="closeModal">Close</fwb-button>
             </div>
           </template>
         </fwb-modal>
@@ -112,22 +113,31 @@ const title = ref();
 const piclink = ref();
 const updateTitle = ref();
 const updatePic = ref();
+const modalTitle = ref();
 
 const isShowModal = ref(false);
 
-async function closeModal(id) {
+async function closeModalUpload(id) {
   await axios.put(`http://localhost:8000/api/courses/${id}`, {
     title: updateTitle.value,
+    slug: slugify(updateTitle.value),
     pic: updatePic.value,
   });
 
   const toast = useToast();
   toast.success("Updated successfully");
   isShowModal.value = false;
+  getCourses();
 }
+
+function closeModal() {
+  isShowModal.value = false;
+}
+
 function showModal(titleval, piclinkval) {
   isShowModal.value = true;
   (updateTitle.value = titleval), (updatePic.value = piclinkval);
+  modalTitle.value = titleval;
 }
 
 const getCourses = async () => {

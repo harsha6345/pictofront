@@ -39,3 +39,7 @@
 .project-sidebar button {
   @apply text-white bg-opacity-50 w-full text-left py-2 px-3 rounded-md;
 }
+
+.content-input {
+  @apply px-3 py-2 bg-transparent text-white outline outline-1 outline-white;
+}
