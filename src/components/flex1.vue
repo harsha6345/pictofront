@@ -1,5 +1,5 @@
 <script setup>
-defineProps({
+const props = defineProps({
   title: {
     type: String,
     required: true,
@@ -25,12 +25,17 @@ import arrowRight from "../assets/arrow-right.vue";
     class="h-1/2 rounded-sm commoncard flex flex-col gap-y-2 md:w-1/2 xl:w-full w-full"
   >
     <div class="flex w-full justify-between items-center">
-      <img :src="image" class="h-[90px]" alt="" />
-      <h1 class="text-2xl text-slate-100">{{ title }}</h1>
+      <img
+        :src="image"
+        alt=""
+        :class="{
+          'h-[70px]': props.title === 'Learn FrontEnd',
+          'h-[80px]': props.title === 'Learn Python',
+        }"
+      />
+      <h1 class="text-xl text-slate-100 text-end">{{ props.title }}</h1>
     </div>
-    <h1 class="text-white text-md my-2">
-      {{ description }}
-    </h1>
+    <div class="text-white text-md my-2" v-html="props.description"></div>
     <div class="w-full flex justify-end mt-2">
       <router-link
         :to="link"

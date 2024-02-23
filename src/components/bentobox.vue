@@ -5,22 +5,30 @@ import flex1 from "../components/flex1.vue";
 
 <template>
   <section
-    class="flex h-full w-11/12 max-w-7xl items-center xl:flex-row flex-col"
+    class="flex h-full md:w-11/12 w-full max-w-7xl items-center xl:flex-row flex-col"
   >
     <div
-      class="xl:w-4/12 md:w-11/12 w-full h-full px-3 py-2 flex xl:flex-col md:flex-row flex-col items-center justify-center gap-x-4 gap-y-4"
+      class="xl:w-4/12 md:w-11/12 w-full h-full md:px-3 px-0 py-2 flex xl:flex-col md:flex-row flex-col items-center justify-center gap-x-4 gap-y-4"
     >
       <flex1
         title="Learn FrontEnd"
-        link="/tutorials/frontend"
+        link="/learn/frontend"
         image="/images/front.webp"
-        description="Front-end development is like making a colorful, interactive playground on the internet where you can click on things and they do fun stuff!"
+        description="<ul class=' list-disc translate-x-3'>
+           <li>HTML,CSS,Javascript</li>
+          <li>React JS</li>
+          </ul>"
       />
       <flex1
-        title="Learn Python"
+        title="Learn Backend"
         link="#"
-        image="/images/python.svg"
-        description="Learning Python is like playing with magical building blocks that help you tell your computer what to do, like making it draw pictures"
+        image="/images/terminal.svg"
+        description="<ul class=' list-disc translate-x-3'>
+            <li>Node Js</li>
+            <li>Express Js</li>
+            <li>SQL/NoSQL Databases</li>
+            <li>Building API's</li>
+          </ul>"
       />
     </div>
     <div
@@ -34,8 +42,8 @@ import flex1 from "../components/flex1.vue";
         >
           <div class="w-full h-1/2 commoncard">
             <div class="flex w-full justify-between items-center">
-              <img src="/images/aws.svg" class="h-[90px]" alt="" />
-              <h1 class="text-2xl text-slate-100">Learn DevOps</h1>
+              <img src="/images/python.svg" class="h-[90px]" alt="" />
+              <h1 class="text-xl text-slate-100">Learn Python</h1>
             </div>
 
             <div class="w-full flex justify-end mt-2">
@@ -49,7 +57,7 @@ import flex1 from "../components/flex1.vue";
           <div class="w-full h-1/2 commoncard">
             <div class="flex w-full justify-between items-center">
               <img src="/images/clang.svg" class="h-[90px]" alt="" />
-              <h1 class="text-2xl text-slate-100">Learn C Language</h1>
+              <h1 class="text-xl text-slate-100 text-end">Learn C Language</h1>
             </div>
 
             <div class="w-full flex justify-end mt-2">
@@ -61,22 +69,20 @@ import flex1 from "../components/flex1.vue";
             </div>
           </div>
         </div>
-        <div class="md:w-7/12 w-full h-full pl-4">
+        <div class="md:w-7/12 w-full h-full md:pl-4 pl-0">
           <div class="w-full h-full commoncard">
             <div class="flex justify-between items-center">
-              <img src="/images/terminal.svg" alt="" class="h-[90px]" />
-              <h1 class="text-2xl text-slate-100">Learn BackEnd</h1>
+              <img src="/images/ml.svg" alt="" class="h-[90px]" />
+              <h1 class="text-xl text-slate-100">Learn AI/ML</h1>
             </div>
             <h1 class="text-white text-md my-5">
-              Learning backend development involves mastering server-side
-              technologies, databases, and APIs. It's about building the
-              invisible infrastructure that powers web applications and ensures
-              data storage and retrieval.
-              <span class="md:inline hidden"
-                >Proficiency in languages like Python, Node.js, or Ruby and
-                frameworks like Django or Express is essential for backend
-                development.</span
-              >
+              <ul class="list-disc translate-x-3">
+                <li>Python</li>
+                <li>Numpy, pandas</li>
+                <li>Scikit</li>
+                <li>Tensorflow</li>
+              </ul>
+              <span class="md:inline hidden"> 3+ projects </span>
             </h1>
             <div class="w-full flex justify-end mt-2">
               <a
@@ -93,14 +99,11 @@ import flex1 from "../components/flex1.vue";
           <div class="flex gap-x-3 items-center w-full justify-center h-full">
             <img src="/images/DataStructures.svg" alt="" class="h-[90px]" />
             <div class="flex flex-col gap-y-1">
-              <h1 class="text-2xl text-slate-100">
-                Learn Data Structures & Algorithms(DSA)
-              </h1>
-              <p class="text-white">
-                Learning Python is like playing with magical building blocks
-                that help you tell your computer what to do, like making it draw
-                pictures
-              </p>
+              <h1 class="text-xl text-slate-100 mb-1">Learn DSA</h1>
+              <ul class="text-white mb-2 list-disc translate-x-3">
+                <li>Linked lists to graphs</li>
+                <li>Code in multiple languages</li>
+              </ul>
               <div class="w-full flex justify-end mt-2">
                 <a
                   href="#"

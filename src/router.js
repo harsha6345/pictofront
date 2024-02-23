@@ -51,7 +51,7 @@ const routes = [
     component: BlogView,
   },
   {
-    path: "/tutorials/:slug",
+    path: "/learn/:slug",
     name: "TutorialView",
     component: TutorialView,
   },

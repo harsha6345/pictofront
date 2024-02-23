@@ -2,16 +2,10 @@
   <div>
     <div class="flex">
       <div
-        class="w-[250px] flex flex-col gap-y-1 bg-pictoblue h-[calc(100vh-100px)] items-center tut-sidebar"
+        class="w-[250px] flex flex-col bg-black bg-opacity-60 h-[calc(100vh-100px)] items-center"
       >
-        <a href="#">Hello world</a>
-        <a href="#">Hello world</a>
-        <a href="#">Hello world</a>
-        <a href="#">Hello world</a>
-        <a href="#">Hello world</a>
-        <a href="#">Hello world</a>
-        <a href="#">Hello world</a>
-        <a href="#">Hello world</a>
+        <Heading />
+        <Heading />
       </div>
       <div class="w-full py-5 flex flex-col items-center">
         <div class="flex flex-col gap-y-5 justify-center items-center">
@@ -110,6 +104,8 @@ import {
   LanguageName,
 } from "@ryusei/light";
 import "@ryusei/light/dist/css/themes/ryuseilight-ginga.min.css";
+//Components
+import Heading from "../components/tutorial/Headings.vue";
 
 RyuseiLight.register([javascript(), html()]);
 RyuseiLight.compose({
@@ -178,9 +174,5 @@ onMounted(() => {
   height: 5px;
   transition: width 400ms ease;
   width: 0;
-}
-
-.tut-sidebar a {
-  @apply text-white w-full text-center py-2 bg-opacity-50 rounded-md hover:bg-pictored hover:bg-opacity-50 transition;
 }
 </style>

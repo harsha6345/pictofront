@@ -5,7 +5,7 @@ import Footer from "./components/Footer.vue";
 
 <template>
   <div class="bg-pictoblue2">
-    <Navbar />
+    <Navbar :class="{ hidden: $route.path == '/editor' }" />
     <router-view></router-view>
     <img
       src="/images/nnnoise.svg"
@@ -14,7 +14,7 @@ import Footer from "./components/Footer.vue";
     />
     <Footer
       :class="{
-        hidden: $route.path === '/edit',
+        hidden: $route.path === '/editor',
       }"
     />
   </div>

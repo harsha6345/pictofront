@@ -43,3 +43,9 @@
 .content-input {
   @apply px-3 py-2 bg-transparent text-white outline outline-1 outline-white;
 }
+
+.gutter,
+.gutter-horizontal {
+  @apply bg-pictored;
+  cursor: col-resize;
+}

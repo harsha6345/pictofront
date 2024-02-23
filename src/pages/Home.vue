@@ -1,11 +1,11 @@
 <template>
   <div>
     <section
-      class="flex flex-col items-center justify-center bg-[url('/images/oooscillate.svg')] bg-no-repeat bg-cover bg-pictoblue"
+      class="flex flex-col items-center justify-center lg:bg-[url('/images/oooscillate.svg')] bg-no-repeat bg-cover bg-pictoblue"
     >
       <div class="flex flex-col items-center px-4 py-16 gap-y-12">
         <h1
-          class="lg:text-6xl md:text-5xl text-3xl text-center font-semibold text-white stroke"
+          class="lg:text-6xl md:text-5xl text-4xl text-center font-semibold text-white stroke"
         >
           Why
           <span
@@ -13,7 +13,7 @@
             >coding </span
           >can't be fun ?
         </h1>
-        <p class="text-slate-200 text-center w-9/12 text-xl">
+        <p class="text-slate-200 text-center w-9/12 md:text-xl">
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit tempora
           temporibus minus doloribus molestias voluptatum repellat, obcaecati
           illum facilis dignissimos. Tempora eaque dignissimos vitae sapiente
@@ -39,7 +39,8 @@
         <bentobox />
       </div>
     </section>
-    <section id="features-section"></section>
+
+    <section></section>
   </div>
 </template>
 
@@ -47,6 +48,7 @@
 import bentobox from "../components/bentobox.vue";
 import arrowRight from "../assets/arrow-right.vue";
 import { onMounted, ref } from "vue";
+import Features from "../components/Features.vue";
 
 const adsensecontent = ref();
 
