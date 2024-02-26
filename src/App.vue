@@ -9,8 +9,11 @@ import Footer from "./components/Footer.vue";
     <router-view></router-view>
     <img
       src="/images/nnnoise.svg"
+      :class="{
+        hidden: $route.path === '/editor',
+      }"
       alt=""
-      class="w-screen h-full z-30 pointer-events-none fixed top-0 left-0 object-cover opacity-75"
+      class="w-screen h-full z-30 pointer-events-none fixed top-0 left-0 object-cover opacity-50"
     />
     <Footer
       :class="{

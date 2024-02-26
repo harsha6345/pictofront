@@ -1,16 +1,21 @@
 <template>
   <section class="h-screen">
-    <EditNav @fullScreen="enableFullScreen" />
+    <div
+      class="w-full bg-pictoblue justify-center gap-x-2 items-center py-2 text-white md-lg:flex hidden"
+    >
+      <span>Project title is here</span>
+    </div>
+    <EditNav @fullScreen="enableFullScreen" @execute="executeCode" />
 
-    <section class="flex w-full" id="editor-container">
+    <section class="flex w-full relative" id="editor-container">
       <div class="codecontainer h-full w-1/2">
         <div
           class="code-controls h-[50px] w-full bg-black flex items-center px-2 py-1 justify-between"
         >
-          <div class="flex text-white language-toggle">
+          <div class="flex text-white language-toggle flex-wrap">
             <button
               @click="changeLanguage('html')"
-              class="text-md font-semibold tracking-wider uppercase flex items-center gap-x-[2px] px-3"
+              class="selector-button font-semibold tracking-wider uppercase flex items-center gap-x-[2px] px-3"
               :class="{
                 'bg-pictored bg-opacity-50 py-1 px-3 rounded-md':
                   currentLanguage === 'html',
@@ -43,7 +48,7 @@
             </button>
             <button
               @click="changeLanguage('css')"
-              class="text-md font-semibold tracking-wider uppercase flex items-center gap-x-[2px] px-3"
+              class="selector-button font-semibold tracking-wider uppercase flex items-center gap-x-[2px] px-3"
               :class="{
                 'bg-pictored bg-opacity-50 py-1 px-3 rounded-md':
                   currentLanguage === 'css',
@@ -84,7 +89,7 @@
             </button>
             <button
               @click="changeLanguage('javascript')"
-              class="text-md font-semibold tracking-wider uppercase flex items-center gap-x-[2px] px-3"
+              class="selector-button font-semibold tracking-wider uppercase flex items-center gap-x-[2px] px-3"
               :class="{
                 'bg-pictored bg-opacity-50 py-1 px-3 rounded-md':
                   currentLanguage === 'javascript',
@@ -105,7 +110,10 @@
               javascript
             </button>
           </div>
-          <div class="flex items-center text-white gap-x-2">
+          <div
+            class="flex items-center text-white gap-x-2"
+            x-data="{openControls : false}"
+          >
             <button
               @click="formatFn"
               class="flex items-center gap-x-[1px] hover:text-pictored transition"
@@ -115,10 +123,9 @@
             </button>
             <button
               class="text-white hover:text-pictored transition relative"
-              x-data="{openControls : false}"
+              x-on:click="openControls = true"
             >
               <svg
-                x-on:click="openControls = !openControls"
                 xmlns="http://www.w3.org/2000/svg"
                 width="24"
                 height="24"
@@ -129,11 +136,12 @@
                   d="M19.14 12.94c.04-.3.06-.61.06-.94c0-.32-.02-.64-.07-.94l2.03-1.58a.49.49 0 0 0 .12-.61l-1.92-3.32a.488.488 0 0 0-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54a.484.484 0 0 0-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.05.3-.09.63-.09.94s.02.64.07.94l-2.03 1.58a.49.49 0 0 0-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6s3.6 1.62 3.6 3.6s-1.62 3.6-3.6 3.6"
                 />
               </svg>
+
               <div
                 x-show="openControls"
                 x-on:click.away="openControls = false"
                 x-transition
-                class="absolute -bottom-20 right-0 z-10 bg-pictoblue2 px-3 py-2 rounded-md flex flex-col items-center gap-y-2"
+                class="absolute -bottom-20 right-0 z-40 bg-pictoblue2 px-3 py-2 rounded-md flex flex-col items-center gap-y-2"
                 v-show="isControlsOpen"
               >
                 <label for="fontSize" class="text-white">Font size : </label>
@@ -149,27 +157,60 @@
                   />
                   <span>40</span>
                 </div>
+
+                <div class="flex items-center gap-x-2">
+                  <label for="autosave">Autosave</label>
+                  <input
+                    type="checkbox"
+                    name="autosave"
+                    id="autosave"
+                    v-model="isAutoSaveOn"
+                    @change="changeAutosave"
+                  />
+                </div>
               </div>
             </button>
           </div>
         </div>
+
         <div
           id="html-editor"
-          class="w-full"
+          class="w-full editor"
           v-show="currentLanguage == 'html'"
         ></div>
         <div
           id="css-editor"
-          class="w-full"
+          class="w-full editor"
           v-show="currentLanguage == 'css'"
         ></div>
 
         <div
           id="js-editor"
-          class="w-full"
+          class="w-full editor"
           v-show="currentLanguage == 'javascript'"
         ></div>
       </div>
+      <button
+        class="md-lg:hidden block px-2 py-2 rounded-md bg-pictored bg-opacity-40 absolute bottom-4 right-4 z-50 text-white"
+        @click="showPreview"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="32"
+          height="32"
+          viewBox="0 0 256 256"
+        >
+          <g fill="currentColor">
+            <path
+              d="M224 128a96 96 0 1 1-96-96a96 96 0 0 1 96 96"
+              opacity=".2"
+            />
+            <path
+              d="M128 24a104 104 0 1 0 104 104A104.11 104.11 0 0 0 128 24m-26.37 144h52.74C149 186.34 140 202.87 128 215.89c-12-13.02-21-29.55-26.37-47.89M98 152a145.72 145.72 0 0 1 0-48h60a145.72 145.72 0 0 1 0 48Zm-58-24a87.61 87.61 0 0 1 3.33-24h38.46a161.79 161.79 0 0 0 0 48H43.33A87.61 87.61 0 0 1 40 128m114.37-40h-52.74C107 69.66 116 53.13 128 40.11c12 13.02 21 29.55 26.37 47.89m19.84 16h38.46a88.15 88.15 0 0 1 0 48h-38.46a161.79 161.79 0 0 0 0-48m32.16-16h-35.43a142.39 142.39 0 0 0-20.26-45a88.37 88.37 0 0 1 55.69 45M105.32 43a142.39 142.39 0 0 0-20.26 45H49.63a88.37 88.37 0 0 1 55.69-45M49.63 168h35.43a142.39 142.39 0 0 0 20.26 45a88.37 88.37 0 0 1-55.69-45m101.05 45a142.39 142.39 0 0 0 20.26-45h35.43a88.37 88.37 0 0 1-55.69 45"
+            />
+          </g>
+        </svg>
+      </button>
 
       <div class="output-div w-1/2 bg-white flex flex-col z-20" id="output-div">
         <div id="output-iframe" class="h-full w-full">
@@ -178,14 +219,17 @@
             class="w-full h-full"
             :srcdoc="computedSrcdoc"
             id="preview"
-            allowfullscreen="allowfullscreen"
-            webkitallowfullscreen
-            mozallowfullscreen
-            oallowfullscreen
-            msallowfullscreen
+            allow="camera; display-capture; geolocation; microphone; web-share"
+            allowfullscreen="true"
+            allowpaymentrequest="true"
+            allowtransparency="true"
+            sandbox="allow-forms allow-modals allow-pointer-lock allow-popups allow-scripts allow-top-navigation-by-user-activation allow-downloads allow-presentation"
           ></iframe>
         </div>
-        <div class="virtual-console h-[200px] w-full bg-slate-800"></div>
+        <div
+          class="virtual-console w-full bg-slate-800"
+          id="virtual-console"
+        ></div>
       </div>
     </section>
   </section>
@@ -205,7 +249,7 @@ import { html_beautify } from "js-beautify";
 import { css_beautify } from "js-beautify";
 import { js_beautify } from "js-beautify";
 import screenfull from "screenfull";
-import { onMounted, ref, computed } from "vue";
+import { onMounted, ref, computed, watch } from "vue";
 import { generateScript } from "../scripts/returnScript.js";
 import Split from "split.js";
 
@@ -230,11 +274,6 @@ let JsEditor;
 const htmlCode = ref("<!--This is a comment-->");
 const cssCode = ref("/*This is a comment*/");
 const jsCode = ref("//This is a comment");
-const computedSrcdoc = computed(() => {
-  return `${htmlCode.value} <style>${cssCode.value}</style> ${generateScript(
-    jsCode.value
-  )}`;
-});
 
 const changeLanguage = (language) => {
   currentLanguage.value = language;
@@ -339,9 +378,58 @@ const enableFullScreen = () => {
 const openCodeControls = () => {
   isControlsOpen.value = !isControlsOpen.value;
 };
-//TODO : Write the execute code function
 
-const executeCode = () => {};
+//Autosave feature
+
+const isAutoSaveOn = ref(false);
+const pseudoHtml = ref("");
+const pseudoCss = ref("");
+const pseudoJs = ref("");
+
+let computedSrcdoc;
+
+const changeAutosave = () => {
+  console.log(isAutoSaveOn.value);
+};
+
+computedSrcdoc = computed(() => {
+  return `${pseudoHtml.value} <style>${
+    pseudoCss.value
+  }</style> ${generateScript(pseudoJs.value)}`;
+});
+
+watch(isAutoSaveOn, () => {
+  if (isAutoSaveOn.value === true) {
+    computedSrcdoc = computed(() => {
+      return `${htmlCode.value} <style>${
+        cssCode.value
+      }</style> ${generateScript(jsCode.value)}`;
+    });
+  } else if (isAutoSaveOn.value === false) {
+    pseudoHtml.value = htmlCode.value;
+    pseudoCss.value = cssCode.value;
+    pseudoJs.value = jsCode.value;
+    computedSrcdoc = computed(() => {
+      return `${pseudoHtml.value} <style>${
+        pseudoCss.value
+      }</style> ${generateScript(pseudoJs.value)}`;
+    });
+  }
+});
+
+const executeCode = () => {
+  pseudoHtml.value = htmlCode.value;
+  pseudoCss.value = cssCode.value;
+  pseudoJs.value = jsCode.value;
+};
+
+//Code options
+
+const isPreviewOn = ref(false);
+
+const showPreview = () => {
+  isPreviewOn.value = !isPreviewOn.value;
+};
 
 onMounted(() => {
   currentLanguage.value = "html";
@@ -361,24 +449,47 @@ onMounted(() => {
 
   //Splitting
 
-  Split([".codecontainer", ".output-div"], {
-    sizes: [50, 50],
-    gutterSize: 5,
-    minSize: [150, 150],
-  });
+  if (window.innerWidth > 900) {
+    Split([".codecontainer", ".output-div"], {
+      sizes: [50, 50],
+      gutterSize: 5,
+      minSize: [0, 0],
+    });
+  } else {
+    Split([".codecontainer", ".output-div"], {
+      sizes: [100, 0],
+      gutterSize: 0,
+      minSize: [0, 0],
+    });
+    watch(isPreviewOn, () => {
+      if (isPreviewOn.value === true) {
+        Split([".codecontainer", ".output-div"], {
+          sizes: [0, 100],
+          gutterSize: 0,
+          minSize: [0, 0],
+        });
+      } else if (isPreviewOn.value === false) {
+        Split([".codecontainer", ".output-div"], {
+          sizes: [100, 0],
+          gutterSize: 0,
+          minSize: [0, 0],
+        });
+      }
+    });
+  }
 });
-</script>
-<script>
-//Virtual console functionality
 </script>
 
 <style scoped>
-.fade-enter-active,
-.fade-leave-active {
-  transition: opacity 0.5s;
+.console-list {
+  color: white;
 }
-.fade-enter,
-.fade-leave-to {
-  opacity: 0;
+
+.selector-button svg {
+  @apply md-lg:block hidden;
+}
+
+.selector-button {
+  @apply md-lg:text-base text-sm md-lg:px-3 px-2;
 }
 </style>

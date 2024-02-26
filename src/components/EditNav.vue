@@ -9,9 +9,11 @@
         <span>Back</span>
       </button>
     </div>
-    <div class="w-9/12 h-[70px] bg-blue-400"></div>
-    <div class="flex items-center gap-x-2">
+    <div class="w-9/12 h-[70px] bg-blue-400 md-lg:block hidden"></div>
+    <div class="flex items-center gap-x-2" x-data="{openOptions : true}">
       <button
+        @click="emitExecute"
+        id="evaluate-button"
         class="py-2 px-3 bg-pictored text-white rounded-md flex items-center gap-x-1 flex-shrink-0"
       >
         Save & Run
@@ -37,9 +39,7 @@
           </g>
         </svg>
       </button>
-      <button class="rounded-full bg-[rgb(180,6,100)] py-2 px-2">
-        <arrowRight :class="{ 'rotate-90 text-white text-lg': true }" />
-      </button>
+
       <button
         class="rounded-full bg-[rgb(180,6,100)] py-2 px-2 text-lg"
         @click="emitfullScreen"
@@ -69,16 +69,24 @@
 <script setup>
 import arrowRight from "../assets/arrow-right.vue";
 import { useRouter } from "vue-router";
-
+import { ref } from "vue";
 const router = useRouter();
+
+//Refs here
 
 const goBack = () => {
   router.push("/");
 };
 
-const emit = defineEmits(["fullScreen"]);
+const emit = defineEmits(["fullScreen", "execute"]);
 
 const emitfullScreen = () => {
   emit("fullScreen");
 };
+
+const emitExecute = () => {
+  emit("execute");
+};
 </script>
+
+<style></style>
