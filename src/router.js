@@ -19,11 +19,17 @@ import ProjectView from "./pages/ProjectView.vue";
 import Dashboard from "./pages/adminControls/Dashboard.vue";
 import Headings from "./pages/adminControls/Headings.vue";
 import Content from "./pages/adminControls/Content.vue";
+import RoadmapList from "./pages/RoadmapList.vue";
 const routes = [
   {
     path: "/",
     name: "Home",
     component: Home,
+  },
+  {
+    path: "/roadmaplist",
+    name: "RoadmapList",
+    component: RoadmapList,
   },
   {
     path: "/login",
@@ -70,6 +76,7 @@ const routes = [
     name: "Editor",
     component: Editor,
   },
+
   {
     path: "/roadmaps",
     name: "Roadmaps",
